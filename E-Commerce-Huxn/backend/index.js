@@ -2,6 +2,8 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import router from "./routes/userRoutes.js";
+
 
 // utils
 import connectDB from "./config/db.js";
@@ -18,9 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-app.get('/' , (req , res)=>{
-     res.send("Hello World");
-})
+app.use("/api/users" , router);
+
+// app.get('/' , (req , res)=>{
+//      res.send("Hello World");
+// })
 
 app.listen(port , ()=>{
     console.log(`Server up: ${port}`)
